@@ -1,13 +1,6 @@
 ﻿namespace MajesticPremForm
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
 
     public partial class MainForm : Form
@@ -33,7 +26,7 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -41,10 +34,15 @@
             WindowState = FormWindowState.Minimized;
         }
 
+        private static int Sum = 0;
         private void ellipseButton1_Click(object sender, EventArgs e)
         {
-            string[] data = { textBox1.Text, textBox2.Text };
+            string sum = textBox2.Text.Contains("$") ? textBox2.Text.Replace("$", string.Empty) : textBox2.Text;
+
+            string[] data = { textBox1.Text, sum };
+            Sum += int.Parse(sum); 
             listView1.Items.Add(new ListViewItem(data));
+            label5.Text = String.Concat("Общая сумма: ", Sum.ToString(), "$");
         }
 
         private void ellipseButton2_Click(object sender, EventArgs e)
@@ -56,10 +54,14 @@
             }
             
             {
+                string path = Path.Combine(Environment.CurrentDirectory, "Results", String.Concat(DateTime.Now.ToString().Replace(':', ';'), ".txt"));
+                File.AppendAllText(path, "staticId;amount;comment\n");
+
                 foreach (ListViewItem item in listView1.Items)
                 {
+                    
                     string text = $"{item.SubItems[0].Text};{item.SubItems[1].Text};Премия\n";
-                    File.AppendAllText(Path.Combine(Environment.CurrentDirectory, "Results", String.Concat(/*DateTime.Now.Day, ".", DateTime.Now.Month*/ DateTime.Now.ToString().Replace(':', ';'), ".txt")), text);
+                    File.AppendAllText(path, text);
                 }
                 label4.Text = "Сохранено!";
             }

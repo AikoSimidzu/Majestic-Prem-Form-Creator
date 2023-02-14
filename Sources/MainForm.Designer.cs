@@ -44,6 +44,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,12 +209,22 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Статус: Ожидание";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(228, 483);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 15);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Общая сумма: 0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(897, 509);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -254,5 +265,6 @@
         private Panel panel2;
         private Panel panel3;
         private Label label4;
+        private Label label5;
     }
 }

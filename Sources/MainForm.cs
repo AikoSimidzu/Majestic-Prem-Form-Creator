@@ -37,7 +37,7 @@
         private static int Sum = 0;
         private void ellipseButton1_Click(object sender, EventArgs e)
         {
-            string sum = (textBox2.Text.Contains("$") ? textBox2.Text.Replace("$", string.Empty) : textBox2.Text).Replace(" ", string.Empty);
+            string sum = (textBox2.Text.Contains("$") ? textBox2.Text.Replace("$", string.Empty) : textBox2.Text);
             if (sum.Contains(" "))
             { sum.Replace(" ", string.Empty); }
 

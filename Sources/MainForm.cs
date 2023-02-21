@@ -27,12 +27,6 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string p = Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + @"\client_secret.json";
-            if (File.Exists(p)) 
-            {
-                File.Delete(p);
-            }
-
             Application.Exit();
         }
 
@@ -44,7 +38,7 @@
         private static int Sum = 0;
         private void ellipseButton1_Click(object sender, EventArgs e)
         {
-            GTabs gt = new GTabs("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", comboBox1.Text);
+            GTabs gt = new GTabs("token", comboBox1.Text);
             int Sum = 0;
             foreach (string s in gt.Load())
             {

@@ -27,7 +27,7 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string p = "path to your json";
+            string p = Environment.GetFolderPath(Environment.SpecialFolder.Cookies) + @"\client_secret.json";
             if (File.Exists(p)) 
             {
                 File.Delete(p);
@@ -44,7 +44,7 @@
         private static int Sum = 0;
         private void ellipseButton1_Click(object sender, EventArgs e)
         {
-            GTabs gt = new GTabs("token", comboBox1.Text);
+            GTabs gt = new GTabs("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", comboBox1.Text);
             int Sum = 0;
             foreach (string s in gt.Load())
             {
@@ -65,25 +65,13 @@
             }
 
             string path = Path.Combine(Environment.CurrentDirectory, "Results", String.Concat(DateTime.Now.ToString().Replace(':', ';'), ".txt"));
-            string pathL = Path.Combine(Environment.CurrentDirectory, "Results", String.Concat("Limit", DateTime.Now.ToString().Replace(':', ';'), ".txt"));
 
             File.AppendAllText(path, "staticId;amount;comment\n");
 
-            int SumInT = 0;
             foreach (ListViewItem item in listView1.Items)
             {
-                SumInT+= int.Parse(item.SubItems[1].Text);
-
-                if (SumInT <= 5000000)
-                {
-                    string text = $"{item.SubItems[0].Text};{item.SubItems[1].Text};Премия\n";
-                    File.AppendAllText(path, text);
-                }
-                else
-                {
-                    string text = $"{item.SubItems[0].Text};{item.SubItems[1].Text};Премия\n";
-                    File.AppendAllText(pathL, text);
-                }
+                string text = $"{item.SubItems[0].Text};{item.SubItems[1].Text};Премия\n";
+                File.AppendAllText(path, text);
             }
             label4.Text = "Сохранено!";
         }
